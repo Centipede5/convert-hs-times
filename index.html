@@ -17,58 +17,59 @@
             </div>
             <div class="card-body">
                 <!-- Form for user input -->
-
                 <form id="conversion-form" class="my-4">
                     <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="conversionType" class="form-label">Conversion Type</label>
-                        <select class="form-select" id="conversionType" required>
-                        <option value="yards-to-meters">Yards to Meters</option>
-                        <option value="meters-to-yards">Meters to Yards</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="gender" class="form-label">Gender</label>
-                        <select class="form-select" id="gender" required>
-                        <option value="boys">Boys</option>
-                        <option value="girls">Girls</option>
-                        </select>
-                    </div>
+                        <div class="col-md-6">
+                            <label for="conversionType" class="form-label">Conversion Type</label>
+                            <select class="form-select" id="conversionType" required>
+                                <option value="yards-to-meters">Yards to Meters</option>
+                                <option value="meters-to-yards">Meters to Yards</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" required>
+                                <option value="boys">Boys</option>
+                                <option value="girls">Girls</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="event" class="form-label">Event</label>
-                        <select class="form-select" id="event" required>
-                        <option value="200MedleyRelay">200 Medley Relay</option>
-                        <option value="200Freestyle">200 Freestyle</option>
-                        <option value="200IM">200 Individual Medley</option>
-                        <option value="50Freestyle">50 Freestyle</option>
-                        <option value="100Butterfly">100 Butterfly</option>
-                        <option value="100Freestyle">100 Freestyle</option>
-                        <option value="500Freestyle">500 Freestyle / 400m Freestyle</option>
-                        <option value="200FreestyleRelay">200 Freestyle Relay</option>
-                        <option value="100Backstroke">100 Backstroke</option>
-                        <option value="100Breaststroke">100 Breaststroke</option>
-                        <option value="400FreestyleRelay">400 Freestyle Relay</option>
-                        </select>
+                        <div class="col-md-6">
+                            <label for="event" class="form-label">Event</label>
+                            <select class="form-select" id="event" required>
+                                <option value="200MedleyRelay">200 Medley Relay</option>
+                                <option value="200Freestyle">200 Freestyle</option>
+                                <option value="200IM">200 Individual Medley</option>
+                                <option value="50Freestyle">50 Freestyle</option>
+                                <option value="100Butterfly">100 Butterfly</option>
+                                <option value="100Freestyle">100 Freestyle</option>
+                                <option value="500Freestyle">500 Freestyle / 400m Freestyle</option>
+                                <option value="200FreestyleRelay">200 Freestyle Relay</option>
+                                <option value="100Backstroke">100 Backstroke</option>
+                                <option value="100Breaststroke">100 Breaststroke</option>
+                                <option value="400FreestyleRelay">400 Freestyle Relay</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="time" class="form-label">Input Time (MM:SS.SS or SS.SS)</label>
+                            <input type="text" class="form-control" id="time" placeholder="Enter time in MM:SS.SS or SS.SS" 
+                                pattern="^([0-5]?[0-9]:)?([0-5]?[0-9])(\.[0-9]{1,2})?$" 
+                                title="Time must be in the format MM:SS.SS or SS.SS" required>
+                        </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="time" class="form-label">Input Time (MM:SS.SS or SS.SS)</label>
-                        <input type="text" class="form-control" id="time" placeholder="Enter time in MM:SS.SS or SS.SS" 
-                            pattern="^([0-5]?[0-9]:)?([0-5]?[0-9])(\.[0-9]{1,2})?$" 
-                            title="Time must be in the format MM:SS.SS or SS.SS" required>
-                    </div>
-                    
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Convert Time</button>
+                    <button type="submit" class="btn btn-primary ">Convert Time</button>
                 </form>
 
                 <!-- Result display -->
                 <div id="result" class="alert alert-info" role="alert" style="display: none;">
-                    Converted Time: <span id="convertedTime"></span> seconds
+                    Converted Time: <span id="convertedTime"></span>
+                    <button id="copyButton" class="btn btn-success ms-3 ps-2 pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+                      </svg></button>
                 </div>
             </div>
         </div>  
@@ -82,34 +83,35 @@
 <script>
   // Conversion factors as per the image
 
+  // Conversion factors
   var conversionFactors = {
     girls: {
-        '200MedleyRelay': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9001 }, // E200YF, E200SF
-        '200Freestyle': { 'yards-to-meters': 1.108, 'meters-to-yards': 0.9025 },   // A200YF, A200SF
-        '200IM': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9009 },         // C100YF, C100SF
-        '50Freestyle': { 'yards-to-meters': 1.115, 'meters-to-yards': 0.8969 },   // A50YF, A50SF
-        '100Butterfly': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },  // D100YF, D100SF
-        '100Freestyle': { 'yards-to-meters': 1.112, 'meters-to-yards': 0.8993 },  // A100YF, A100SF
-        '500Freestyle': { 'yards-to-meters': 0.8772, 'meters-to-yards': 1.1400 }, // A500YF, A400SF
-        '200FreestyleRelay': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 }, // B100YF, B100SF
-        '100Backstroke': { 'yards-to-meters': 1.112, 'meters-to-yards': 0.8993 }, // C100YF, C100SF
-        '100Breaststroke': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 }, // B100YF, B100SF
-        '400FreestyleRelay': { 'yards-to-meters': 0.8772, 'meters-to-yards': 1.1400 }  // A500YF, A400SF
+        '200MedleyRelay': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9001 },
+        '200Freestyle': { 'yards-to-meters': 1.108, 'meters-to-yards': 0.9025 },
+        '200IM': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9009 },
+        '50Freestyle': { 'yards-to-meters': 1.115, 'meters-to-yards': 0.8969 },
+        '100Butterfly': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '100Freestyle': { 'yards-to-meters': 1.112, 'meters-to-yards': 0.8993 },
+        '500Freestyle': { 'yards-to-meters': 0.8772, 'meters-to-yards': 1.1400 },
+        '200FreestyleRelay': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '100Backstroke': { 'yards-to-meters': 1.112, 'meters-to-yards': 0.8993 },
+        '100Breaststroke': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '400FreestyleRelay': { 'yards-to-meters': 0.8772, 'meters-to-yards': 1.1400 }
     },
     boys: {
-        '200MedleyRelay': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 }, // E200YM, E200SM
-        '200Freestyle': { 'yards-to-meters': 1.108, 'meters-to-yards': 0.9025 },   // A200YM, A200SM
-        '200IM': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9009 },         // C100YM, C100SM
-        '50Freestyle': { 'yards-to-meters': 1.119, 'meters-to-yards': 0.8937 },   // A50YM, A50SM
-        '100Butterfly': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },  // D100YM, D100SM
-        '100Freestyle': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },  // A100YM, A100SM
-        '500Freestyle': { 'yards-to-meters': 0.8780, 'meters-to-yards': 1.1390 }, // A500YM, A400SM
-        '200FreestyleRelay': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 }, // B100YM, B100SM
-        '100Backstroke': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9009 }, // C100YM, C100SM
-        '100Breaststroke': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 }, // B100YM, B100SM
-        '400FreestyleRelay': { 'yards-to-meters': 0.8780, 'meters-to-yards': 1.1390 }  // A500YM, A400SM
+        '200MedleyRelay': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '200Freestyle': { 'yards-to-meters': 1.108, 'meters-to-yards': 0.9025 },
+        '200IM': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9009 },
+        '50Freestyle': { 'yards-to-meters': 1.119, 'meters-to-yards': 0.8937 },
+        '100Butterfly': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '100Freestyle': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '500Freestyle': { 'yards-to-meters': 0.8780, 'meters-to-yards': 1.1390 },
+        '200FreestyleRelay': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '100Backstroke': { 'yards-to-meters': 1.110, 'meters-to-yards': 0.9009 },
+        '100Breaststroke': { 'yards-to-meters': 1.111, 'meters-to-yards': 0.9001 },
+        '400FreestyleRelay': { 'yards-to-meters': 0.8780, 'meters-to-yards': 1.1390 }
     }
-    };
+  };
 
   function MMSSSSToSeconds(time) {
     const parts = time.split(':');
@@ -119,6 +121,7 @@
       return parseFloat(parts[0]) * 60 + parseFloat(parts[1]);
     }
   }
+
   function SecondsToMMSSSS(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = (seconds % 60).toFixed(2);
@@ -133,8 +136,6 @@
     const event = document.getElementById('event').value;
     const time = MMSSSSToSeconds(document.getElementById('time').value);
 
-    console.log(time);
-
     if (isNaN(time)) {
       alert('Please enter a valid time in seconds.');
       return;
@@ -145,11 +146,24 @@
 
     // Calculate the converted time
     const convertedTime = (time * factor);
-    console.log(convertedTime);
+
+    // Prepare the result with units for easy copy
+    const unit = conversionType === 'yards-to-meters' ? 'Meters' : 'Yards';
+    const formattedConvertedTime = `${SecondsToMMSSSS(convertedTime)} (${unit})`;
 
     // Display the result
-    document.getElementById('convertedTime').textContent = SecondsToMMSSSS(convertedTime);
+    document.getElementById('convertedTime').textContent = formattedConvertedTime;
     document.getElementById('result').style.display = 'block';
+  });
+
+  document.getElementById('copyButton').addEventListener('click', function() {
+    var convertedTime = document.getElementById('convertedTime').innerText;
+    convertedTime = convertedTime.substring(0, convertedTime.indexOf('(') - 1);
+    navigator.clipboard.writeText(convertedTime).then(() => {
+      alert('Converted time copied to clipboard!');
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
   });
 </script>
 
