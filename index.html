@@ -145,7 +145,7 @@
     const factor = conversionFactors[gender][event][conversionType];
 
     // Calculate the converted time
-    const convertedTime = (time * factor);
+    const convertedTime = Math.round(100*time * factor)/100;
 
     // Prepare the result with units for easy copy
     const unit = conversionType === 'yards-to-meters' ? 'Meters' : 'Yards';
