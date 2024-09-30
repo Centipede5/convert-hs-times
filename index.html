@@ -4,10 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swimming Time Converter</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
   <link rel="stylesheet" href="win95.css">
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-95 ">
+    <a class="navbar-brand" href="#">
+        <img src="swimming.png" width="32" height="32"> High School Swim Time Converter    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/Centipede5/convert-hs-times" target="_blank">Code</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mailto:centipede5dev@gmail.com">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container my-5">
     <div class="container">
@@ -17,18 +37,18 @@
             </div>
             <div class="card-body">
                 <!-- Form for user input -->
-                <form id="conversion-form" class="my-4">
+                <form id="conversion-form" class="">
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="conversionType" class="form-label">Conversion Type</label>
-                            <select class="form-select" id="conversionType" required>
+                            <select class="form-control" id="conversionType" required>
                                 <option value="yards-to-meters">Yards to Meters</option>
                                 <option value="meters-to-yards">Meters to Yards</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="gender" class="form-label">Gender</label>
-                            <select class="form-select" id="gender" required>
+                            <select class="form-control" id="gender" required>
                                 <option value="boys">Boys</option>
                                 <option value="girls">Girls</option>
                             </select>
@@ -38,7 +58,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="event" class="form-label">Event</label>
-                            <select class="form-select" id="event" required>
+                            <select class="form-control" id="event" required>
                                 <option value="200MedleyRelay">200 Medley Relay</option>
                                 <option value="200Freestyle">200 Freestyle</option>
                                 <option value="200IM">200 Individual Medley</option>
@@ -60,24 +80,30 @@
                                 title="Time must be in the format MM:SS.SS or SS.SS" required>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary ">Convert Time</button>
+                    <button type="submit" class="btn btn-block p-2 btn-secondary mt-4">Convert Time</button>
                 </form>
+
 
                 <!-- Result display -->
                 <div id="result" class="alert alert-info" role="alert" style="display: none;">
                     Converted Time: <span id="convertedTime"></span>
-                    <button id="copyButton" class="btn btn-success ms-3 ps-2 pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                    <button id="copyButton" class="btn btn-success ml-3 pl-2 pr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
                       </svg></button>
                 </div>
             </div>
         </div>  
+        <div class="text-center mb-4 text-error">
+            <b> This app converts high school short course times between meters and yards according to current <a style="color:aqua" href="https://www.nfhs.org/sports-resource-content/swimming-and-diving-distance-conversion-chart/" target="_blank"><img src="search_web-1.png" class="icon-16-4"> NFHS Swimming and Diving Rules</a></b> 
+        </div>
     </div>  
+    
 </div>
 
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 
 <!-- JavaScript Logic -->
 <script>
